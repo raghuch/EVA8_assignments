@@ -8,7 +8,8 @@ This contains the jupyter notebooks for assignment solutions to EVA-8 exercies:
 and finally in the forward function of the CNN, we return the two outputs (digit and sum) as:
 
 ``` pred = F.log_softmax(x)
-        return pred, (pred.argmax(dim=1, keepdim=True) + int_input)```
+        return pred, (pred.argmax(dim=1, keepdim=True) + int_input)
+```
         
 
 The training output shows that the accuracy achieved is above 99%
