@@ -13,6 +13,8 @@ and finally in the forward function of the CNN, we return the two outputs (digit
 
 The training output shows that the accuracy achieved is above 99%
 
+
+
 Colab logs for assignment 2.5:
 
 |Timestamp|Level|Message|
