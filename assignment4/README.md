@@ -1,1 +1,4 @@
 This folder hosts the solution for assignment 4 of the EVA-8 course.
+Steps in obtaining 99.4% test accuracy:
+
+[Step 1](https://github.com/raghuch/EVA8_assignments/blob/main/assignment4/EVA4S5F2_Step1.ipynb) is a naive code taken directly from the class, just to see how well the CNN performs, without paying attention to the model size. We just take the MNIST data and convert to Tensor and normalize it (no transforms). It has close to 195k model params which are 19.5X our ideal size, but we get a max test accuracy of 98.86 in 20 epochs and 98.72 in 15 epochs. The basic backbone is input block -> 2 conv blocks (conv + ReLU) -> transition block (2x2 maxpool) -> 4 conv blocks (conv + ReLU) -> final conv2d layer. We haven't used any batchnorms or LR Scheduler. We set the LR to 0.01 with SGD (used in class example directly).
