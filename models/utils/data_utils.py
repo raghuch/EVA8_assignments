@@ -52,7 +52,7 @@ class AugmentedCIFAR10(Dataset):
         if self.train:
             img = self.transforms(image=np.array(img))["image"]
         else:
-            img = self.norm(imaage=np.array(img))["image"]
+            img = self.norm(image=np.array(img))["image"]
 
         img = np.transpose(img, (2,0,1)).astype(np.float32)
 
