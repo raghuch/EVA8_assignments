@@ -7,41 +7,25 @@ from torchvision import datasets, transforms
 import albumentations as A
 import numpy as np
 
-# Don't use torchvision transforms but use albumentations transforms instead
-# train_transforms = transforms.Compose([
-#                                       #  transforms.Resize((28, 28)),
-#                                       #  transforms.ColorJitter(brightness=0.10, contrast=0.1, saturation=0.10, hue=0.1),
-#                                        transforms.RandomRotation((-7.0, 7.0), fill=(1,)),
-#                                        transforms.ToTensor(),
-#                                        transforms.Normalize((0.1307,), (0.3081,)) 
-#                                        # The mean and std have to be sequences (e.g., tuples), therefore you should add a comma after the values. 
-#                                        ])
 
-# # Test Phase transformations
-# test_transforms = transforms.Compose([
-#                                        transforms.ToTensor(),
-#                                        transforms.Normalize((0.1307,), (0.3081,))
-#                                        ])
+# Don't use torchvision transforms but use albumentations transforms instead
 
 class AugmentedCIFAR10(Dataset):
-    def __init__(self, img_lst, train=True, transforms=None):
+    def __init__(self, img_lst, train=True):
         super().__init__()
         self.img_lst = img_lst
         self.train = train
-        self.transforms = transforms
-        if self.transforms is None:
-            self.transforms = A.Compose([
-                A.Normalize((0.49139968, 0.48215841, 0.44653091), (0.24703223, 0.24348513, 0.26158784)),
-                A.HorizontalFlip(),
-                A.ShiftScaleRotate(),
-                A.CoarseDropout(1, 16, 16, 1, 16, fill_value=0.473363, mask_fill_value=None),
-                A.ToGray()
-            ])
+        self.transforms = A.Compose([
+            A.Normalize((0.49139968, 0.48215841, 0.44653091), (0.24703223, 0.24348513, 0.26158784)),
+            A.HorizontalFlip(),
+            A.ShiftScaleRotate(),
+            A.CoarseDropout(1, 16, 16, 1, 16, fill_value=0.473363, mask_fill_value=None),
+            A.ToGray()
+        ])
 
         self.norm = A.Compose([
-                        A.Normalize((0.49139968, 0.48215841, 0.44653091), (0.24703223, 0.24348513, 0.26158784))
+            A.Normalize((0.49139968, 0.48215841, 0.44653091), (0.24703223, 0.24348513, 0.26158784))
         ])
-        self.train = train
 
     def __len__(self):
         return len(self.img_lst)
