@@ -59,8 +59,8 @@ def get_augmented_cifar10_dataset(data_root):
     use_cuda = torch.cuda.is_available()
     dataloader_args = dict(shuffle=True, batch_size=64, num_workers=4, pin_memory=True) if use_cuda else dict(shuffle=True, batch_size=64)
 
-    train_loader = torch.utils.data.DataLoader(AugmentedCIFAR10(trainset, train=True, transforms=None), **dataloader_args)
-    test_loader = torch.utils.data.DataLoader(AugmentedCIFAR10(testset, train=False, transforms=None), **dataloader_args)
+    train_loader = torch.utils.data.DataLoader(AugmentedCIFAR10(trainset, train=True), **dataloader_args)
+    test_loader = torch.utils.data.DataLoader(AugmentedCIFAR10(testset, train=False), **dataloader_args)
 
     return train_loader, test_loader
 
