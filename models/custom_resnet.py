@@ -104,7 +104,8 @@ class customResNet(nn.Module):
         out = self.flatten(out)
         out = self.fc(out)
 
-        return F.log_softmax(out)
+        #return F.log_softmax(out)
+        return out
     
 def get_customResNet():
     return customResNet(ResBlock, [1, 1])
